@@ -1,7 +1,6 @@
 # Scripts
-Here come simple projects for people who asked me about it. 
-Currently there is only a DeathCounter for a streamer in there. This can be used by everyone and integrated into OBS or Streamlabs. 
-If you find bugs, feel free to report them. 
+This is just a collection of scripts and other code snippets. I do not guarantee for correctness or actuality. Feel free to use the scripts as you like. Most of them I created privately to relieve me of monotonous tasks, others are requests from friends and acquaintances, others are created in the context of studies or seminars. 
+With kind regards 
 
 Greeting [@Niffecs](https://github.com/Niffecs)
 
