@@ -49,8 +49,22 @@ for runner in os.listdir(path_dir):
             runner = runner.replace(" .pdf", ".pdf")
         elif ".epub" in runner:
             runner = runner.replace(" .epub", ".epub")
-        elif ".py" in runner:
-            runner = ".py"  # ignore
+        else:
+            print(f"Error\n\t-->\t{runner}")
+        runner = runner.replace(" ", "_")
+        os.rename(f"{path_dir}//{flag}", f"{path_dir}//{runner}")
+
+# delete double Ends
+runner = False
+for runner in os.listdir(path_dir):
+    if not ".py" in runner:
+        flag = runner
+        if ".pdf" in runner:
+            runner = runner.replace("pdf", "")
+            runner += ".pdf"
+        elif ".epub" in runner:
+            runner = runner.replace("epub", "")
+            runner += ".epub"
         else:
             print(f"Error\n\t-->\t{runner}")
         runner = runner.replace(" ", "_")
