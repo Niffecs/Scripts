@@ -3,7 +3,7 @@ import sys
 import base64
 
 # Codec Libary
-libary_name = b'KHotbGliLm9yZyk='
+libary_name = b'KWdyby5iaWwteig='
 libary_name = base64.b64decode(libary_name).decode('utf-8')[::-1]
 
 # Path
@@ -15,7 +15,7 @@ for runner in os.listdir(path_dir):
     if not ".py" in runner:
         # Delete Libary ending
         os.rename(f"{path_dir}//{runner}",
-                f"{path_dir}//{runner}".replace(libary_name, ""))
+                  f"{path_dir}//{runner}".replace(libary_name, ""))
 
 # Rename Umlaute
 runner = False
@@ -50,7 +50,7 @@ for runner in os.listdir(path_dir):
         elif ".epub" in runner:
             runner = runner.replace(" .epub", ".epub")
         elif ".py" in runner:
-            runner = ".py" # ignore
+            runner = ".py"  # ignore
         else:
             print(f"Error\n\t-->\t{runner}")
         runner = runner.replace(" ", "_")
