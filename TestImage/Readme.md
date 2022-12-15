@@ -1,8 +1,6 @@
 # Test Image    
-The program should distinguish whether a program is a photo or a drawing.
+Write a Python program that distinguishes whether an image is a photograph or a drawing.
 
-# Libarys
+# Libraries
 - OpenCV
 - Numpy
-
-# Examples
