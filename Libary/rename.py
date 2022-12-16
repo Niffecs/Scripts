@@ -20,10 +20,9 @@ path_dir = "."
 path_dir = path_dir.replace("\\", "//")
 
 for runner in os.listdir(path_dir):
-    if ".pdf" not in runner:
-        if ".htm" in runner:
-            layer = runner.replace("htm","pdf")
-            os.rename(f"{path_dir}//{runner}", f"{path_dir}//{runner}")
+	if ".htm" in runner:
+        	layer = runner.replace("htm","pdf")
+        	os.rename(f"{path_dir}//{runner}", f"{path_dir}//{layer}")
 
 # Test Folder
 error = 0
