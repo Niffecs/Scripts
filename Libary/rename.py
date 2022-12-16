@@ -19,6 +19,11 @@ libary_name = base64.b64decode(libary_name).decode('utf-8')[::-1]
 path_dir = "."
 path_dir = path_dir.replace("\\", "//")
 
+for runner in os.listdir(path_dir):
+    if ".pdf" not in runner:
+        if ".htm" in runner:
+            layer = runner.replace("htm","pdf")
+            os.rename(f"{path_dir}//{runner}", f"{path_dir}//{runner}")
 
 # Test Folder
 error = 0

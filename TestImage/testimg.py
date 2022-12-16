@@ -1,21 +1,30 @@
-import cv2
+# Import the necessary libraries
+from sklearn import *
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
 import numpy as np
 
+def is_photo_or_drawing(image):
+  # Load the image and convert it to grayscale
+  img = Image.open(image).convert('L')
+  
+  # Resize the image to a standard size
+  img = img.resize((200, 200))
 
-def identify_image(image):
-    # Convert the image to grayscale
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+  # Flatten the image into a 1D array
+  img_array = np.array(img).flatten()
 
-    # Create an image with only the edges of the original image
-    edges = cv2.Canny(gray_image, 100, 200)
+  # Standardize the values in the array
+  scaler = StandardScaler()
+  img_array = scaler.fit_transform(img_array.reshape(-1, 1))
 
-    # Count the number of lines in the edge image
-    lines = cv2.HoughLinesP(edges, 1, np.pi/180,
-                            threshold=100, minLineLength=100, maxLineGap=10)
-    line_count = len(lines)
+  # Create a logistic regression model and train it on a dataset of photos and drawings
+  model = make_pipeline(LogisticRegression())
+  model.fit(X, y)
 
-    # Compare the number of lines to a threshold to decide whether the image is a drawing or photograph
-    if line_count > 50:
-        return "drawing."
-    else:
-        return "photograph"
+  # Use the trained model to make a prediction on the input image
+  y_pred = model.predict([img_array])
+
+  # Return the predicted class (1 for photo, 0 for drawing)
+  return y_pred[0]
