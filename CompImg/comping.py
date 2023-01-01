@@ -17,7 +17,4 @@ def remove_duplicate_images(folder_path):
             else:
                 image_hashes[hash] = file
 
-def args():
-    return sys.argv
-
-remove_duplicate_images(args[1])
+remove_duplicate_images(sys.argv[1])
