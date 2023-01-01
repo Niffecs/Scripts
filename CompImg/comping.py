@@ -1,5 +1,6 @@
 import os
 import hashlib
+import sys
 
 def remove_duplicate_images(folder_path):
     # Zunächst werden alle Bilddateien im Ordner eingelesen
@@ -15,3 +16,8 @@ def remove_duplicate_images(folder_path):
                 os.remove(os.path.join(folder_path, file))
             else:
                 image_hashes[hash] = file
+
+def args():
+    return sys.argv
+
+remove_duplicate_images(args[1])
