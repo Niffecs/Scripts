@@ -4,7 +4,7 @@ import sys
 
 def remove_duplicate_images(folder_path):
     # Zunächst werden alle Bilddateien im Ordner eingelesen
-    image_files = [f for f in os.listdir(folder_path) if f.endswith(".jpg") or f.endswith(".png")]
+    image_files = [f for f in os.listdir(folder_path) if f.endswith(".mp4") or f.endswith(".MP4")]
     
     # Für jedes Bild wird ein Hash-Wert berechnet
     image_hashes = {}
