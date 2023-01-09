@@ -1,8 +1,6 @@
 import os
 import hashlib
-import sys
 import uuid
-import time
 
 def format_image(folder_path=".") -> None:
     os.chdir(folder_path)
@@ -11,7 +9,6 @@ def format_image(folder_path=".") -> None:
         print(file,f"\t-->\t{file[0:-3:1]}png")
         layer = file[0:-3:1].replace(".","")
         os.rename(file,f"{layer}.png")
-    sys.exit(0)
 
 def remove_duplicate_images(folder_path=".") -> None:
     # Zunächst werden alle Bilddateien im Ordner eingelesen
@@ -32,17 +29,15 @@ def remove_duplicate_images(folder_path=".") -> None:
     for runner in delete:
         os.remove(os.path.join(folder_path, runner))
 
-def rename(pathx=".") -> None:
+def rename(pathx="."):
     # New Thread
-    os.chdir(pathx)    
-    a = [f for f in os.listdir(".") if f.endswith(".jpg") or f.endswith(".png") or f.endswith(".jpeg")]
-    for runner in a:
-        y = str(uuid.uuid4()).replace("-","")
-        y = y[0:16:1]
-        os.rename(runner,f"{y}.jpg")
-        
+    for runner in os.listdir(pathx):
+        if not ".py" in runner:
+            new_name= f"{str(uuid.uuid4()).replace('-','').replace('.png','')[0:21:1]}.png"
+            os.replace(runner,new_name)
 
 if __name__ == "__main__":
     format_image(".")
     remove_duplicate_images(".")
     rename(".")
+        
