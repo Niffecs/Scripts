@@ -3,6 +3,15 @@ import hashlib
 import sys
 import uuid
 import time
+from PIL import Image
+
+def format_image(folder_path="."):
+    image_files = [f for f in os.listdir(folder_path) if f.endswith(".JPG") or f.endswith(".png") or f.endswith(".jpeg")]  
+    for file in image_files:
+        img_png = Image.open(file)
+        y = str(uuid.uuid4()).replace("-","")[0:8:1]
+        img_png.save(f"{file}_{y}.jpg")
+
 
 def remove_duplicate_images(folder_path="."):
     # Zunächst werden alle Bilddateien im Ordner eingelesen
