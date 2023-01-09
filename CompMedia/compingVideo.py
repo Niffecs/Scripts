@@ -1,10 +1,11 @@
 import os
 import hashlib
 import sys
+import uuid
 
-def remove_duplicate_images(folder_path):
+def remove_duplicate_images(folder_path="."):
     # Zunächst werden alle Bilddateien im Ordner eingelesen
-    image_files = [f for f in os.listdir(folder_path) if f.endswith(".mp4") or f.endswith(".MP4")]
+    image_files = [f for f in os.listdir(folder_path) if f.endswith(".mp4") or f.endswith(".MP4") or f.endswith("mp4")]
     
     # Für jedes Bild wird ein Hash-Wert berechnet
     image_hashes = {}
@@ -17,4 +18,14 @@ def remove_duplicate_images(folder_path):
             else:
                 image_hashes[hash] = file
 
-remove_duplicate_images(sys.argv[1])
+def rename(folder_path="."):
+    # New Thread
+    image_files = [f for f in os.listdir(folder_path) if f.endswith(".mp4") or f.endswith(".MP4") or f.endswith("mp4")]
+    for file in image_files:
+        uuidx = str(uuid.uuid4().hex).replace("-","")[0:21:1] 
+        os.rename(file, f"{uuidx}.mp4")
+
+
+
+remove_duplicate_images(".")
+rename(".")
