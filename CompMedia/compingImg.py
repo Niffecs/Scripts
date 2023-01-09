@@ -2,11 +2,12 @@ import os
 import hashlib
 import sys
 import uuid
+import time
 
 def remove_duplicate_images(folder_path="."):
     # Zunächst werden alle Bilddateien im Ordner eingelesen
     image_files = [f for f in os.listdir(folder_path) if f.endswith(".jpg") or f.endswith(".png") or f.endswith(".jpeg")]
-    
+    delete = []    
     # Für jedes Bild wird ein Hash-Wert berechnet
     image_hashes = {}
     for file in image_files:
@@ -14,9 +15,14 @@ def remove_duplicate_images(folder_path="."):
             hash = hashlib.sha256(f.read()).hexdigest()
             # Wenn es bereits ein Bild mit demselben Hash gibt, wird es gelöscht
             if hash in image_hashes:
-                os.remove(os.path.join(folder_path, file))
+                delete.append(file) # --> Test new Thread
+                #os.remove(os.path.join(folder_path, file))
             else:
                 image_hashes[hash] = file
+                
+    for runner in delete:
+        os.remove(os.path.join(folder_path, runner))
+
 def rename(pathx="."):
     # New Thread
     os.chdir(pathx)    
@@ -26,8 +32,8 @@ def rename(pathx="."):
         y = y[0:16:1]
         os.rename(runner,f"{y}.jpg")
         
-rename()
-remove_duplicate_images(".")
 
+remove_duplicate_images(".")
+rename(".")
 
 
