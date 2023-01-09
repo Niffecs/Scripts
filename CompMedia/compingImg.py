@@ -41,7 +41,7 @@ def rename(pathx="."):
         y = y[0:16:1]
         os.rename(runner,f"{y}.jpg")
         
-
+format_image(".")
 remove_duplicate_images(".")
 rename(".")
 
